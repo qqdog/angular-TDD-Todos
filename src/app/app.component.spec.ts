@@ -1,3 +1,4 @@
+import { TitleComponent } from './title/title.component';
 
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 
@@ -10,7 +11,10 @@ describe('AppComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [AppComponent]
+      declarations: [
+        AppComponent,
+        TitleComponent
+      ]
     })
     .compileComponents();
   }));
