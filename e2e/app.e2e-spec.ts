@@ -1,3 +1,4 @@
+
 import { DemoPage } from './app.po';
 
 describe('demo App', () => {
@@ -7,8 +8,8 @@ describe('demo App', () => {
     page = new DemoPage();
   });
 
-  it('should display message saying app works', () => {
+  it(`should display 'todos' in h1`, () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+    expect(page.getTodos()).toBe('todos');
   });
 });
