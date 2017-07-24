@@ -24,14 +24,18 @@ describe('TitleComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have title as \'todos\'', () => {
-    expect(component.title).toBe('todos');
-  });
+  // it('should have title as \'todos\'', () => {
+  //   expect(component.title).toBe('todos');
+  // });
 
-  it('should use title property in HTML', () => {
-    component.title = 'fake';
-    fixture.detectChanges();
-    const element = fixture.debugElement.query(By.css('h1')).nativeElement;
-    expect(element.textContent).toBe('fake');
+  // it('should use title property in HTML', () => {
+  //   component.title = 'fake';
+  //   fixture.detectChanges();
+  //   const element = fixture.debugElement.query(By.css('h1')).nativeElement;
+  //   expect(element.textContent).toBe('fake');
+  // });
+
+  it(`should have method as 'getTitle'`, () => {
+    expect(component.getTitle()).toBe('todos');
   });
 });
