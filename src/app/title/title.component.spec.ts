@@ -1,3 +1,4 @@
+import { element } from 'protractor';
 import { By } from '@angular/platform-browser';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
@@ -37,5 +38,12 @@ describe('TitleComponent', () => {
 
   it(`should have method as 'getTitle'`, () => {
     expect(component.getTitle()).toBe('todos');
+  });
+
+  it(`should use 'getTitle()' method in tag h1, in HTML`, () => {
+    component.getTitle = () => { return 'fake'; };
+    fixture.detectChanges();
+    const element = fixture.debugElement.query(By.css('h1')).nativeElement;
+    expect(element.textContent).toBe('fake');
   });
 });
