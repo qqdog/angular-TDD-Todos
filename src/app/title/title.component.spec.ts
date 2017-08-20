@@ -1,49 +1,39 @@
-import { element } from 'protractor';
-import { By } from '@angular/platform-browser';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TitleComponent } from './title.component';
+import { By } from '@angular/platform-browser';
+import { DebugElement } from '@angular/core';
 
 describe('TitleComponent', () => {
-  let component: TitleComponent;
   let fixture: ComponentFixture<TitleComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ TitleComponent ]
-    })
-    .compileComponents();
-  }));
+  let component: TitleComponent;
+  let debugElement: DebugElement;
+  let element: HTMLElement;
+  let target: TitleComponent;
 
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [TitleComponent]
+    });
+
     fixture = TestBed.createComponent(TitleComponent);
     component = fixture.componentInstance;
+    debugElement = fixture.debugElement;
+    target = new TitleComponent();
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+  describe('Interpolation Binding: field', () => {
+    it(`should use title field in HTML`, () => {
+      component.title = 'fake';
+      fixture.detectChanges();
 
-  // it('should have title as \'todos\'', () => {
-  //   expect(component.title).toBe('todos');
-  // });
+      element = debugElement.query(By.css('h1')).nativeElement;
+      expect(element.textContent).toBe('fake');
+    });
 
-  // it('should use title property in HTML', () => {
-  //   component.title = 'fake';
-  //   fixture.detectChanges();
-  //   const element = fixture.debugElement.query(By.css('h1')).nativeElement;
-  //   expect(element.textContent).toBe('fake');
-  // });
-
-  it(`should have method as 'getTitle'`, () => {
-    expect(component.getTitle()).toBe('todos');
-  });
-
-  it(`should use 'getTitle()' method in tag h1, in HTML`, () => {
-    component.getTitle = () => { return 'fake'; };
-    fixture.detectChanges();
-    const element = fixture.debugElement.query(By.css('h1')).nativeElement;
-    expect(element.textContent).toBe('fake');
+    it(`should have title as 'todos' in class`, () => {
+      expect(target.title).toBe('todos');
+    });
   });
 });
