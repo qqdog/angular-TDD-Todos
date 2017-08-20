@@ -37,11 +37,21 @@ describe('TitleComponent', () => {
     // });
 
     it(`should use getTitle() in HTML`, () => {
-      spyOn(component, 'getTitle').and.returnValue('fake');
+      // Method 1
+      // spyOn(component, 'getTitle').and.returnValue('fake');
+
+      // Method 2
+      spyOn(component, 'getTitle').and.callFake(() => {
+        return 'fake';
+      });
       fixture.detectChanges();
 
-      htmlElement = debugElement.query(By.css('h1')).nativeElement;
-      expect(htmlElement.textContent).toBe('fake');
+      // Method A
+      // htmlElement = debugElement.query(By.css('h1')).nativeElement;
+      // expect(htmlElement.textContent).toBe('fake');
+
+      // Method B
+      expect(component.getTitle).toHaveBeenCalled();
     });
 
     it(`should have getTitle() and return 'todos'`, () => {
