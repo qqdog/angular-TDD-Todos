@@ -8,7 +8,7 @@ describe('TitleComponent', () => {
   let fixture: ComponentFixture<TitleComponent>;
   let component: TitleComponent;
   let debugElement: DebugElement;
-  let element: HTMLElement;
+  let htmlElement: HTMLElement;
   let target: TitleComponent;
 
   beforeEach(() => {
@@ -24,16 +24,28 @@ describe('TitleComponent', () => {
   });
 
   describe('Interpolation Binding: field', () => {
-    it(`should use title field in HTML`, () => {
-      component.title = 'fake';
+    // it(`should use title field in HTML`, () => {
+    //   component.title = 'fake';
+    //   fixture.detectChanges();
+
+    //   element = debugElement.query(By.css('h1')).nativeElement;
+    //   expect(element.textContent).toBe('fake');
+    // });
+
+    // it(`should have title as 'todos' in class`, () => {
+    //   expect(target.title).toBe('todos');
+    // });
+
+    it(`should use getTitle() in HTML`, () => {
+      spyOn(component, 'getTitle').and.returnValue('fake');
       fixture.detectChanges();
 
-      element = debugElement.query(By.css('h1')).nativeElement;
-      expect(element.textContent).toBe('fake');
+      htmlElement = debugElement.query(By.css('h1')).nativeElement;
+      expect(htmlElement.textContent).toBe('fake');
     });
 
-    it(`should have title as 'todos' in class`, () => {
-      expect(target.title).toBe('todos');
+    it(`should have getTitle() and return 'todos'`, () => {
+      expect(target.getTitle()).toBe('todos');
     });
   });
 });
