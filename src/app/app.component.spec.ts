@@ -55,5 +55,17 @@ describe('AppComponent', () => {
 
       expect(component.addTodo).toHaveBeenCalled();
     });
+
+
+    it(`should have 'addTodo()' to push todo to an array and clear todo`, () => {
+      /** 建立假的 HTMLInputElement 物件(強制把 Object 轉型別) */
+      const todoStub = <HTMLInputElement>{
+        'value': 'fake'
+      };
+      target.addTodo(todoStub);
+
+      expect(target.todos.length).toBe(1);
+      expect(todoStub.value).toBe('');
+    });
   });
 });
