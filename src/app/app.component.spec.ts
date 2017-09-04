@@ -58,7 +58,15 @@ describe('AppComponent', () => {
 
 
     it(`should have 'addTodo()' to push todo to an array and clear todo`, () => {
-      /** 建立假的 HTMLInputElement 物件(強制把 Object 轉型別) */
+      /**
+       *  建立假的 HTMLInputElement 物件(強制把 Object 轉型別)
+       *
+       *  補充：一般強型別語言提到轉型，會使用 () 語法
+       *  不過 TypeScript 並沒有使用 ()，而使用 <>
+       *  主要是因為型別在 TypeScript 只提供編譯時期檢查，
+       *  而非強行別語言在執行時期轉型，因此採用泛型的 <> 語法
+       *  強調 type assertion 是編譯時期轉型，而非執行時期轉型。
+      */
       const todoStub = <HTMLInputElement>{
         'value': 'fake'
       };
