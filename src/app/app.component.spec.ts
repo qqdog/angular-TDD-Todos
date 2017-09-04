@@ -33,4 +33,27 @@ describe('AppComponent', () => {
       expect(htmlElement).toBeTruthy();
     });
   });
+
+  describe(`Property Binding`, () => {
+    it(`should use 'inputHint' field on 'placeholder' attribute in HTML`, () => {
+      component.inputHint = 'fake';
+      fixture.detectChanges();
+
+      htmlElement = debugElement.query(By.css('.new-todo')).nativeElement;
+      expect(htmlElement.getAttribute('placeholder')).toBe('fake');
+    });
+
+    it(`should have inputHint field as 'What needs to be done?' in class`, () => {
+      expect(target.inputHint).toBe('What needs to be done?');
+    });
+  });
+
+  describe(`Event Binding`, () => {
+    it(`should use 'addTodo()' on 'keyup.enter' event in HTML`, () => {
+      spyOn(component, 'addTodo');
+      debugElement.query(By.css('.new-todo')).triggerEventHandler('keyup.enter', null);
+
+      expect(component.addTodo).toHaveBeenCalled();
+    });
+  });
 });
